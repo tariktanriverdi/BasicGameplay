@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,16 +10,18 @@ public class PlayerController : MonoBehaviour
 
     public float xRange = 10;
     public GameObject projectilePrefab;
+   
     void Start()
     {
-
+       
     }
 
+    
     // Update is called once per frame
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * speed * horizontalInput*Time.deltaTime);
+        transform.Translate(Vector3.right * speed * horizontalInput * Time.deltaTime);
         if (transform.position.x < -xRange)
         {
             transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
@@ -27,13 +30,13 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
 
-     
-       }
-       if(Input.GetKeyDown(KeyCode.Space))
-       {  
-           Vector3 spawnPoint=new Vector3(transform.position.x,transform.position.y+2,transform.position.z+0.5f);
-          Instantiate(projectilePrefab,spawnPoint,projectilePrefab.transform.rotation);
-       }
+
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z + 0.5f);
+            Instantiate(projectilePrefab, spawnPoint, projectilePrefab.transform.rotation);
+        }
     }
 
 }
